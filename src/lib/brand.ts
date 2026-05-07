@@ -59,6 +59,7 @@ export const BRAND = {
 
   // ---------- RODAPÉ ----------
   footerText: "Perfumaria artesanal · Feita à mão sob demanda",
+  footerAddress: "Rua Campo Largo, 156",
 
   // ---------- IMAGENS ----------
   images: {

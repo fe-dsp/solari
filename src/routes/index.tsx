@@ -101,7 +101,7 @@ function SolariPage() {
           src={BRAND.images.branchRight}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute right-0 bottom-[12%] z-[5] w-[55vw] max-w-[520px] animate-fade-in-up opacity-90 sm:bottom-[8%] md:top-[12%] md:bottom-auto md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
+          className="pointer-events-none absolute right-0 top-[8%] z-[5] w-[55vw] max-w-[520px] animate-fade-in-up opacity-90 md:top-[12%] md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
           style={{ transform: `translate(18%, ${y * -0.04}px) scaleX(-1)` }}
         />
 
@@ -135,7 +135,7 @@ function SolariPage() {
           </Reveal>
         </div>
 
-        <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+        <div className="absolute bottom-6 left-0 right-0 z-10 text-center text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
           ↓ role para descobrir
         </div>
       </section>
@@ -242,7 +242,9 @@ function SolariPage() {
       <footer className="border-t border-border px-6 py-10 text-center text-sm text-muted-foreground">
         <p className="font-script text-3xl text-foreground">{BRAND.name}</p>
         <p className="mt-2">{BRAND.footerText}</p>
-        <p className="mt-1 text-xs">© {BRAND.year} {BRAND.name}. Todos os direitos reservados.</p>
+        <p className="mt-3 text-xs uppercase tracking-[0.25em] text-foreground/70">Endereço</p>
+        <p className="mt-1">{BRAND.footerAddress}</p>
+        <p className="mt-3 text-xs">© {BRAND.year} {BRAND.name}. Todos os direitos reservados.</p>
       </footer>
     </main>
   );
