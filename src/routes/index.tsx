@@ -1,11 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ShoppingBag, Leaf, Sparkles, HandHeart, Flower2, MessageCircle } from "lucide-react";
-import heroImg from "@/assets/hero-solari.jpg";
-import craftImg from "@/assets/manifesto-craft.jpg";
-import lavenderImg from "@/assets/accent-lavender.jpg";
-import citrusImg from "@/assets/accent-citrus.jpg";
-import { products, WHATSAPP_NUMBER } from "@/lib/products";
+import { products } from "@/lib/products";
+import { BRAND, WHATSAPP, whatsappUrl } from "@/lib/brand";
 import { CartProvider, useCart } from "@/lib/cart-context";
 import { CartDrawer } from "@/components/solari/CartDrawer";
 import { ProductCard } from "@/components/solari/ProductCard";
@@ -20,18 +17,11 @@ export const Route = createFileRoute("/")({
   ),
   head: () => ({
     meta: [
-      { title: "Solari — A Alma da Casa em Cada Aroma" },
-      {
-        name: "description",
-        content:
-          "Perfumaria artesanal Solari: difusores, home sprays e sabonetes feitos à mão sob demanda. Luxo botânico para o seu lar.",
-      },
-      { property: "og:title", content: "Solari — Perfumaria Artesanal" },
-      {
-        property: "og:description",
-        content: "Fragrâncias naturais feitas à mão, com o cuidado que o seu lar merece.",
-      },
-      { property: "og:image", content: heroImg },
+      { title: BRAND.seoTitle },
+      { name: "description", content: BRAND.seoDescription },
+      { property: "og:title", content: BRAND.seoTitle },
+      { property: "og:description", content: BRAND.seoDescription },
+      { property: "og:image", content: BRAND.images.hero },
     ],
   }),
 });
@@ -80,7 +70,7 @@ function SolariPage() {
 
       {/* Logo mark top-left */}
       <div className="fixed left-5 top-5 z-40 sm:left-8 sm:top-7">
-        <span className="font-script text-3xl text-foreground sm:text-4xl">Solari</span>
+        <span className="font-script text-3xl text-foreground sm:text-4xl">{BRAND.name}</span>
       </div>
 
       {/* HERO */}
@@ -90,8 +80,8 @@ function SolariPage() {
           style={{ transform: `translateY(${y * 0.15}px)` }}
         >
           <img
-            src={heroImg}
-            alt="Composição botânica Solari com lavanda, eucalipto e cítricos"
+            src={BRAND.images.hero}
+            alt={BRAND.images.heroAlt}
             className="h-full w-full object-cover opacity-90"
             width={1920}
             height={1080}
@@ -99,38 +89,39 @@ function SolariPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/10 to-background" />
         </div>
 
-        {/* Floating accents */}
+        {/* Botanical branches entering from edges */}
         <img
-          src={lavenderImg}
+          src={BRAND.images.branchLeft}
           alt=""
           aria-hidden
-          className="animate-float-slow absolute left-[4%] top-[18%] hidden h-44 w-32 rotate-[-8deg] rounded-2xl object-cover shadow-[var(--shadow-soft)] md:block lg:h-56 lg:w-40"
-          style={{ transform: `translateY(${y * -0.08}px) rotate(-8deg)` }}
+          className="pointer-events-none absolute left-0 top-[14%] z-[5] w-[55vw] max-w-[520px] -translate-x-[18%] animate-fade-in-up opacity-90 sm:top-[10%] md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
+          style={{ transform: `translate(-18%, ${y * -0.06}px)` }}
         />
         <img
-          src={citrusImg}
+          src={BRAND.images.branchRight}
           alt=""
           aria-hidden
-          className="animate-float absolute right-[5%] top-[22%] hidden h-40 w-32 rotate-[6deg] rounded-2xl object-cover shadow-[var(--shadow-soft)] md:block lg:h-52 lg:w-40"
-          style={{ transform: `translateY(${y * -0.05}px) rotate(6deg)` }}
+          className="pointer-events-none absolute right-0 bottom-[12%] z-[5] w-[55vw] max-w-[520px] translate-x-[18%] animate-fade-in-up opacity-90 sm:bottom-[8%] md:top-[12%] md:bottom-auto md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
+          style={{ transform: `translate(18%, ${y * -0.04}px)` }}
         />
 
         <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 pb-16 pt-32 text-center">
           <Reveal>
             <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-1.5 text-[11px] uppercase tracking-[0.3em] text-muted-foreground backdrop-blur">
-              <Leaf className="h-3 w-3 text-primary" /> Perfumaria Artesanal
+              <Leaf className="h-3 w-3 text-primary" /> {BRAND.heroBadge}
             </span>
           </Reveal>
           <Reveal delay={150}>
             <h1 className="text-balance font-display text-5xl leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
-              Solari: <em className="font-script not-italic text-primary">a alma</em>
+              {BRAND.heroTitlePart1}{" "}
+              <em className="font-script not-italic text-primary">{BRAND.heroTitleAccent}</em>
               <br className="hidden sm:block" />
-              da casa em cada aroma
+              {BRAND.heroTitlePart2}
             </h1>
           </Reveal>
           <Reveal delay={300}>
             <p className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Fragrâncias naturais feitas à mão, com o cuidado que o seu lar merece.
+              {BRAND.heroSubtitle}
             </p>
           </Reveal>
           <Reveal delay={450}>
@@ -138,7 +129,7 @@ function SolariPage() {
               onClick={scrollToCollection}
               className="mt-10 inline-flex h-14 items-center gap-3 rounded-full bg-foreground px-8 text-sm uppercase tracking-[0.22em] text-background shadow-[var(--shadow-soft)] transition-all hover:scale-105 hover:bg-primary"
             >
-              Conhecer a Coleção
+              {BRAND.heroCta}
               <Sparkles className="h-4 w-4" />
             </button>
           </Reveal>
@@ -155,8 +146,8 @@ function SolariPage() {
           <Reveal className="relative">
             <div className="relative overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
               <img
-                src={craftImg}
-                alt="Artesã preparando difusor Solari à mão"
+                src={BRAND.images.manifesto}
+                alt={BRAND.images.manifestoAlt}
                 loading="lazy"
                 className="aspect-[4/5] w-full object-cover"
               />
@@ -170,14 +161,14 @@ function SolariPage() {
           </Reveal>
 
           <Reveal delay={150}>
-            <span className="text-xs uppercase tracking-[0.3em] text-primary">O Manifesto</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-primary">{BRAND.manifestoEyebrow}</span>
             <h2 className="mt-4 font-display text-4xl leading-[1.1] sm:text-5xl md:text-6xl">
-              Feito por mãos, <em className="font-script not-italic text-primary">movido</em> por memórias.
+              {BRAND.manifestoTitle}{" "}
+              <em className="font-script not-italic text-primary">{BRAND.manifestoTitleAccent}</em>{" "}
+              {BRAND.manifestoTitleEnd}
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              Cada difusor e spray é produzido sob demanda, garantindo que a essência chegue
-              fresca e potente até você. Sem pressa industrial — apenas a precisão de quem
-              acredita que perfume é sensação, não produto.
+              {BRAND.manifestoText}
             </p>
 
             <ul className="mt-8 space-y-4 text-sm">
@@ -205,12 +196,13 @@ function SolariPage() {
       <section id="colecao" className="relative bg-secondary/30 px-6 py-28 md:py-36">
         <div className="mx-auto max-w-6xl">
           <Reveal className="mb-16 text-center">
-            <span className="text-xs uppercase tracking-[0.3em] text-primary">A Coleção</span>
+            <span className="text-xs uppercase tracking-[0.3em] text-primary">{BRAND.collectionEyebrow}</span>
             <h2 className="mt-4 font-display text-4xl leading-tight sm:text-5xl md:text-6xl">
-              Catálogo de <em className="font-script not-italic text-primary">experiências</em>
+              {BRAND.collectionTitle}{" "}
+              <em className="font-script not-italic text-primary">{BRAND.collectionTitleAccent}</em>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-              Escolha sua versão, monte sua sacola e finalize seu pedido diretamente pelo WhatsApp.
+              {BRAND.collectionSubtitle}
             </p>
           </Reveal>
 
@@ -228,29 +220,29 @@ function SolariPage() {
       <section className="relative px-6 py-24">
         <Reveal className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-4xl leading-tight sm:text-5xl">
-            Pronta para <em className="font-script not-italic text-primary">perfumar</em> seu lar?
+            {BRAND.ctaTitle}{" "}
+            <em className="font-script not-italic text-primary">{BRAND.ctaTitleAccent}</em>{" "}
+            {BRAND.ctaTitleEnd}
           </h2>
           <p className="mt-5 text-muted-foreground">
-            Encomende direto pelo WhatsApp e receba uma criação fresca, feita especialmente para você.
+            {BRAND.ctaSubtitle}
           </p>
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-              "Olá Solari! Gostaria de conhecer mais sobre os produtos.",
-            )}`}
+            href={whatsappUrl(WHATSAPP.contactMessage)}
             target="_blank"
             rel="noreferrer"
             className="mt-8 inline-flex h-14 items-center gap-3 rounded-full bg-primary px-8 text-sm uppercase tracking-[0.22em] text-primary-foreground shadow-[var(--shadow-soft)] transition-all hover:scale-105"
           >
             <MessageCircle className="h-4 w-4" />
-            Falar no WhatsApp
+            {BRAND.ctaButton}
           </a>
         </Reveal>
       </section>
 
       <footer className="border-t border-border px-6 py-10 text-center text-sm text-muted-foreground">
-        <p className="font-script text-3xl text-foreground">Solari</p>
-        <p className="mt-2">Perfumaria artesanal · Feita à mão sob demanda</p>
-        <p className="mt-1 text-xs">© {new Date().getFullYear()} Solari. Todos os direitos reservados.</p>
+        <p className="font-script text-3xl text-foreground">{BRAND.name}</p>
+        <p className="mt-2">{BRAND.footerText}</p>
+        <p className="mt-1 text-xs">© {BRAND.year} {BRAND.name}. Todos os direitos reservados.</p>
       </footer>
     </main>
   );

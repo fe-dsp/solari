@@ -2,7 +2,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2, MessageCircle, ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
-import { WHATSAPP_NUMBER } from "@/lib/products";
+import { BRAND, WHATSAPP, whatsappUrl } from "@/lib/brand";
 
 const fmt = (n: number) => `R$${n.toFixed(0)}`;
 
@@ -14,9 +14,8 @@ export function CartDrawer() {
     const list = items
       .map((i) => `${i.productName} (${i.variantLabel}) x ${i.quantity}`)
       .join(", ");
-    const msg = `Olá Solari! Gostaria de encomendar: ${list}. Valor Total Estimado: ${fmt(total)}`;
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
+    const msg = WHATSAPP.orderMessage(list, total);
+    window.open(whatsappUrl(msg), "_blank");
   };
 
   return (
@@ -34,7 +33,7 @@ export function CartDrawer() {
             <div className="flex h-full flex-col items-center justify-center gap-3 text-center text-muted-foreground">
               <ShoppingBag className="h-10 w-10 opacity-40" />
               <p className="font-display text-xl text-foreground">Sua sacola está vazia</p>
-              <p className="text-sm">Comece a compor sua coleção Solari.</p>
+              <p className="text-sm">Comece a compor sua coleção {BRAND.name}.</p>
             </div>
           ) : (
             <ul className="divide-y divide-border">
