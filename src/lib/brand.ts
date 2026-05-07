@@ -84,12 +84,13 @@ export const WHATSAPP = {
   number: "5511976684475",
 
   // Mensagem do botão "Falar no WhatsApp" (CTA final)
-  contactMessage: "Olá Solari! Gostaria de conhecer mais sobre os produtos.",
+  contactMessage: "Olá ! Gostaria de conhecer mais sobre os produtos.",
 
   // Função que monta a mensagem do pedido (sacola).
   // Recebe a lista de itens já formatada e o total em reais.
   orderMessage: (itemsList: string, total: number) =>
-    `Olá Solari! Gostaria de encomendar: ${itemsList}. Valor Total Estimado: R$${total.toFixed(0)}`,
+    `Olá ! Gostaria de encomendar: ${itemsList}. 
+    Valor Total Estimado: R$${total.toFixed(0)}`,
 };
 
 /** Helper: gera URL pronta do WhatsApp com a mensagem codificada. */
