@@ -101,8 +101,8 @@ function SolariPage() {
           src={BRAND.images.branchRight}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute right-0 bottom-[12%] z-[5] w-[55vw] max-w-[520px] translate-x-[18%] animate-fade-in-up opacity-90 sm:bottom-[8%] md:top-[12%] md:bottom-auto md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
-          style={{ transform: `translate(18%, ${y * -0.04}px)` }}
+          className="pointer-events-none absolute right-0 bottom-[12%] z-[5] w-[55vw] max-w-[520px] animate-fade-in-up opacity-90 sm:bottom-[8%] md:top-[12%] md:bottom-auto md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
+          style={{ transform: `translate(18%, ${y * -0.04}px) scaleX(-1)` }}
         />
 
         <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 pb-16 pt-32 text-center">
