@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ShoppingBag, Leaf, Sparkles, HandHeart, Flower2, MessageCircle } from "lucide-react";
 import { products } from "@/lib/products";
@@ -7,24 +6,6 @@ import { CartProvider, useCart } from "@/lib/cart-context";
 import { CartDrawer } from "@/components/solari/CartDrawer";
 import { ProductCard } from "@/components/solari/ProductCard";
 import { Reveal } from "@/components/solari/Reveal";
-
-export const Route = createFileRoute("/")({
-  component: () => (
-    <CartProvider>
-      <SolariPage />
-      <CartDrawer />
-    </CartProvider>
-  ),
-  head: () => ({
-    meta: [
-      { title: BRAND.seoTitle },
-      { name: "description", content: BRAND.seoDescription },
-      { property: "og:title", content: BRAND.seoTitle },
-      { property: "og:description", content: BRAND.seoDescription },
-      { property: "og:image", content: BRAND.images.hero },
-    ],
-  }),
-});
 
 function CartButton() {
   const { setOpen, count } = useCart();
@@ -63,17 +44,14 @@ function SolariPage() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-      {/* Floating cart */}
       <div className="fixed right-4 top-4 z-50 sm:right-6 sm:top-6">
         <CartButton />
       </div>
 
-      {/* Logo mark top-left */}
       <div className="fixed left-5 top-5 z-40 sm:left-8 sm:top-7">
         <span className="font-script text-3xl text-foreground sm:text-4xl">{BRAND.name}</span>
       </div>
 
-      {/* HERO */}
       <section className="relative min-h-[100svh] w-full">
         <div
           className="absolute inset-0 -z-10 bg-secondary/40"
@@ -89,7 +67,6 @@ function SolariPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/10 to-background" />
         </div>
 
-        {/* Botanical branches entering from edges */}
         <img
           src={BRAND.images.branchLeft}
           alt=""
@@ -140,7 +117,6 @@ function SolariPage() {
         </div>
       </section>
 
-      {/* MANIFESTO */}
       <section className="relative px-6 py-28 md:py-36">
         <div className="mx-auto grid max-w-6xl gap-14 md:grid-cols-2 md:items-center md:gap-20">
           <Reveal className="relative">
@@ -192,7 +168,6 @@ function SolariPage() {
         </div>
       </section>
 
-      {/* COLLECTION */}
       <section id="colecao" className="relative bg-secondary/30 px-6 py-28 md:py-36">
         <div className="mx-auto max-w-6xl">
           <Reveal className="mb-16 text-center">
@@ -216,7 +191,6 @@ function SolariPage() {
         </div>
       </section>
 
-      {/* CTA / FOOTER */}
       <section className="relative px-6 py-24">
         <Reveal className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-4xl leading-tight sm:text-5xl">
@@ -247,5 +221,14 @@ function SolariPage() {
         <p className="mt-3 text-xs">© {BRAND.year} {BRAND.name}. Todos os direitos reservados.</p>
       </footer>
     </main>
+  );
+}
+
+export default function App() {
+  return (
+    <CartProvider>
+      <SolariPage />
+      <CartDrawer />
+    </CartProvider>
   );
 }
