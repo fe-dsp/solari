@@ -98,10 +98,10 @@ function SolariPage() {
           style={{ transform: `translate(-18%, ${y * -0.06}px)` }}
         />
         <img
-          src={BRAND.images.branchRight}
+          src={BRAND.images.branchLeft}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute right-0 top-[8%] z-[5] w-[55vw] max-w-[520px] animate-fade-in-up opacity-90 md:top-[12%] md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
+          className="pointer-events-none absolute right-0 top-[14%] z-[5] w-[55vw] max-w-[520px] translate-x-[18%] -scale-x-100 animate-fade-in-up opacity-90 sm:top-[10%] md:w-[42vw] lg:w-[38vw] lg:max-w-[620px]"
           style={{ transform: `translate(18%, ${y * -0.04}px) scaleX(-1)` }}
         />
 
